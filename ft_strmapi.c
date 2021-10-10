@@ -20,7 +20,7 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	coun = 0;
 	if (!s || !f)
 		return (NULL);
-	rez = (char *)malloc(sizeof(char) * (ft_strlen(s) + 1));
+	rez = (char *)malloc(sizeof(char) * (ft_strlen((char *)s) + 1));
 	if (!rez)
 		return (NULL);
 	while (s[coun])

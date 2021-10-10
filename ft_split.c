@@ -12,29 +12,73 @@
 
 #include "libft.h"
 
-static unsigned int 	ft_nb_st(char const *s, char c)
+static unsigned int	ft_nb_wd(char const *s, char c)
 {
 	unsigned int	coun;
 	unsigned int	nb;
 
 	coun = 0;
 	nb = 0;
-	if (!s)
-		return (NULL);
-	if (s[coun] && s[coun] == c)
+	while (s[coun] && s[coun] == c)
 		coun++;
-	
-
+	while (s[coun])
+	{
+		if (s[coun] == c)
+		{
+			nb++;
+			while (s[coun] == c)
+				coun++;
+			continue ;
+		}
+		coun++;
+	}
+	if (s[coun - 1] != c)
+		nb++;
+	return (nb);
 }
 
-char **ft_split(char const *s, char c)!!!!!!!!!!!!!!!!!!!!!!!!
+static void	ft_str_small(char const *s, unsigned int *len, char c)
 {
-	char			**str;
-	unsigned int	nb_st;
 	unsigned int	coun;
 
+	coun = 0;
+	s += *len;
+	*len = 0;
+	while (*s && *s == c)
+		s++;
+	while (s[coun])
+	{
+		if (s[coun] != c)
+		{
+			(*len)++;
+			coun++;
+		}
+	}
+}
+
+char	**ft_split(char const *s, char c)
+{
+	char			**str;
+	unsigned int	nb_wd;
+	unsigned int	coun;
+	unsigned int	len_new;
+	char			*str_new_start;
+
+	coun = 0;
 	if (!s)
 		return (NULL);
-	nb_st = ft_nb_st(s, c);
-
+	nb_wd = ft_nb_wd(s, c);
+	str = (char **)malloc(sizeof(char *) * (nb_wd + 1));
+	if (!str)
+		return (NULL);
+	str_new_start = (char *)s;
+	len_new = 0;
+	while (coun < nb_wd)
+	{	
+		ft_str_small(str_new_start, &len_new, c);
+		str[coun] = (char *)malloc(sizeof(char) * (len_new + 1));
+		ft_strlcpy(str[coun], str_new_start, len_new + 1);
+		coun++;
+	}
+	return (str);
 }

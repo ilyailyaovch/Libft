@@ -21,7 +21,7 @@ void	ft_putnbr_fd(int nb, int fd)
 	}
 	if (nb < 0)
 	{
-		ft_putchar('-');
+		ft_putchar_fd('-', fd);
 		nb *= (-1);
 	}
 	if (nb >= 10)
