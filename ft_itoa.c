@@ -28,23 +28,37 @@ static int	ft_len(int n)
 	return (len);
 }
 
+static int	ft_sign(int	n)
+{
+	int	sign;
+
+	if (n < 0)
+		sign = -1;
+	else
+		sign = 1;
+	return (sign);
+}
+
+static unsigned int	ft_abs(int n)
+{
+	unsigned int	abs;
+
+	if (n < 0)
+		abs = -n;
+	else
+		abs = n;
+	return (abs);
+}
+
 char	*ft_itoa(int n)
 {
 	char			*str;
-	int			len;
-	int			sign;
+	int				len;
+	int				sign;
 	unsigned int	abs;
-	
-	if (n < 0)
-	{
-		sign *= -1;
-		abs = -n; 
-	}
-	else
-	{
-		sign = 1;
-		abs = n;
-	}
+
+	sign = ft_sign(n);
+	abs = ft_abs(n);
 	len = ft_len(n);
 	str = (char *)malloc(sizeof(char) * (len + 1));
 	if (!str)
