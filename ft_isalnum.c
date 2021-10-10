@@ -6,7 +6,7 @@
 /*   By: pleoma <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 13:17:12 by pleoma            #+#    #+#             */
-/*   Updated: 2021/10/04 13:17:14 by pleoma           ###   ########.fr       */
+/*   Updated: 2021/10/10 15:05:58 by pleoma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,5 @@
 
 int	ft_isalnum(int symb)
 {
-	if ((ft_isalpha(symb) != 0) && (ft_isdigit(symb) != 0))
-		return (0);
-	return (1);
+	return ((ft_isalpha(symb)) || (ft_isdigit(symb)));
 }
