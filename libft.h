@@ -6,7 +6,7 @@
 /*   By: pleoma <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 12:22:14 by pleoma            #+#    #+#             */
-/*   Updated: 2021/10/10 12:55:45 by pleoma           ###   ########.fr       */
+/*   Updated: 2021/10/10 13:10:50 by pleoma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int		ft_strncmp( const char *str1, const char *str2, size_t num);
 void	*ft_memchr(const void *str, int c, size_t n);
 int		ft_memcmp(const void *buf1, const void *buf2, size_t n);
 char	*ft_strnstr(const char *big, const char *little, size_t len);
-int		ft_atoi(char *str);
+int		ft_atoi(const char *str);
 void	*ft_calloc(size_t num, size_t size);
 char	*ft_strdup(const char *str);
 char	*ft_substr(char const *s, unsigned int start, size_t len);

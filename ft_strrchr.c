@@ -19,7 +19,7 @@ char	*ft_strrchr(const char *str, int ch)
 	coun = ft_strlen((char *)str);
 	while (coun >= 0)
 	{
-		if (*(str + coun) == ch)
+		if (*(str + coun) == (unsigned char)ch)
 			return ((char *)(str + coun));
 		coun--;
 	}
