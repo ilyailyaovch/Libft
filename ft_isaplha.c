@@ -6,7 +6,7 @@
 /*   By: pleoma <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 11:51:24 by pleoma            #+#    #+#             */
-/*   Updated: 2021/10/10 15:11:03 by pleoma           ###   ########.fr       */
+/*   Updated: 2021/10/10 20:06:14 by pleoma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,5 @@
 
 int	ft_isalpha(int symb)
 {
-	if ((symb >= 'A') && (symb <= 'Z'))
-		return (1);
-	else if ((symb >= 'a') && (symb <= 'z'))
-		return (1);
-	return (0);
+	return (((symb >= 'a') && (symb <= 'z')) || ((symb >= 'A') && (symb <= 'Z')));
 }
