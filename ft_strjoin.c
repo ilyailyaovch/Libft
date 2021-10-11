@@ -19,6 +19,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	unsigned int	coun2;
 	char			*dst;
 
+	if (!s1 || !s2)
+		return (NULL);
 	coun1 = 0;
 	coun2 = 0;
 	len = ft_strlen((char *)s1) + ft_strlen((char *)s2) + 1;

@@ -23,7 +23,7 @@ int	ft_strncmp(const char *str1, const char *str2, size_t num)
 	coun = 0;
 	while (num--)
 	{
-		if (s1[coun] != s2[coun])
+		if (s1[coun] != s2[coun] || s1[coun] == '\0' || s2[coun] == '\0')
 			return (s1[coun] - s2[coun]);
 		coun++;
 	}

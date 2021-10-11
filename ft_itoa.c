@@ -28,7 +28,7 @@ static int	ft_len(int n)
 	return (len);
 }
 
-static int	ft_sign(int	n)
+static int	ft_sign(int n)
 {
 	int	sign;
 

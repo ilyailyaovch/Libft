@@ -12,15 +12,14 @@
 
 #include "libft.h"
 
-static char	*ft_free_elem(char **str, unsigned int coun)
+static char	**ft_free_elem(char **str)
 {
 	unsigned int	i;
 
-	i = coun;
-	while(--i >= 0)
-	{
-		free(str[i]);
-	}
+	i = 0;
+	while (str[i])
+		free (str[i++]);
+	free (str);
 	return (NULL);
 }
 
@@ -78,7 +77,7 @@ char	**ft_split(char const *s, char c)
 	coun = 0;
 	str_new_start = (char *)s;
 	len_new = 0;
-	if (!s)
+	if (*s == '\0')
 		return (NULL);
 	nb_wd = ft_nb_wd(s, c);
 	str = (char **)malloc(sizeof(char *) * (nb_wd + 1));
@@ -89,10 +88,7 @@ char	**ft_split(char const *s, char c)
 		ft_str_small(&str_new_start, &len_new, c);
 		str[coun] = (char *)malloc(sizeof(char) * (len_new + 1));
 		if (!str[coun])
-		{
-			ft_free_elem(str, coun);
-			return (NULL);
-		}
+			return (ft_free_elem(str));
 		ft_strlcpy(str[coun], (const char *)str_new_start, len_new + 1);
 		coun++;
 	}

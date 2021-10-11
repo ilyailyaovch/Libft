@@ -16,21 +16,21 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	unsigned int	coun;
 	char			*dst;
+	unsigned int	len_s;
+	unsigned int	len_s_need;
 
-	coun = 0;
-	if (!s)
+	if (s == NULL)
 		return (NULL);
-	if ((unsigned int)ft_strlen((char *)s) < start)
+	len_s = (unsigned int)ft_strlen((char *)s);
+	len_s_need = (unsigned int)ft_strlen((char *)s + start);
+	coun = 0;
+	if (len_s < start)
 		return (ft_strdup(""));
+	if (len_s_need < len)
+		len = len_s_need;
 	dst = (char *)malloc(sizeof(char) * (len + 1));
 	if (!dst)
 		return (NULL);
-	while (coun < len)
-	{
-		dst[coun] = s[start];
-		coun++;
-		start++;
-	}
-	dst[coun] = '\0';
+	ft_strlcpy(dst, s + start, len + 1);
 	return (dst);
 }
