@@ -23,12 +23,12 @@ static char	**ft_free_elem(char **str)
 	return (NULL);
 }
 
-static unsigned int	ft_nb_wd(char const *s, char c)
+static unsigned int	ft_numb_of_words(char const *s, char c)
 {
 	unsigned int	coun;
 	unsigned int	nb;
 
-	if (s[0] == '\0')
+	if (!s[0])
 		return (0);
 	coun = 0;
 	nb = 0;
@@ -68,30 +68,63 @@ static void	ft_str_small(char **s, unsigned int *len, char c)
 	}
 }
 
+// static char	**ft_cycle(char **str,unsigned int countWords, char *str_new_start, char c)
+// {
+// 	unsigned int	coun;
+// 	unsigned int	len_new;
+
+// 	coun = 0;
+// 	len_new = 0;
+// 	while (coun < countWords)
+// 	{
+// 		ft_str_small(&str_new_start, &len_new, c);
+// 		str[coun] = (char *)malloc(sizeof(char) * (len_new + 1));
+// 		if (!str[coun])
+// 			return (ft_free_elem(str));
+// 		ft_strlcpy(str[coun], (const char *)str_new_start, len_new + 1);
+// 		coun++;
+// 	}
+// 	str[coun] = NULL;
+// 	return (str);
+// }
+
+// char	**ft_split(char const *s, char c)
+// {
+// 	char			**str;
+// 	char			*str_new_start;
+
+// 	if (!s)
+// 		return (NULL);
+// 	str_new_start = (char *)s;
+// 	str = (char **)malloc(sizeof(char *) * (ft_nb_wd(s, c) + 1));
+// 	if (!str)
+// 		return (NULL);
+// 	return (ft_cycle(str, ft_nb_wd(s, c), str_new_start, c));
+// }
+
 char	**ft_split(char const *s, char c)
 {
 	char			**str;
-	unsigned int	nb_wd;
 	unsigned int	coun;
 	unsigned int	len_new;
 	char			*str_new_start;
 
 	if (!s)
 		return (NULL);
-	coun = 0;
 	str_new_start = (char *)s;
 	len_new = 0;
-	nb_wd = ft_nb_wd(s, c);
-	str = (char **)malloc(sizeof(char *) * (nb_wd + 1));
+	coun = 0;
+	str = (char **)malloc(sizeof(char *) * (ft_numb_of_words(s, c) + 1));
 	if (!str)
 		return (NULL);
-	while (coun++ < nb_wd)
+	while (coun < ft_numb_of_words(s, c))
 	{
 		ft_str_small(&str_new_start, &len_new, c);
 		str[coun] = (char *)malloc(sizeof(char) * (len_new + 1));
 		if (!str[coun])
 			return (ft_free_elem(str));
 		ft_strlcpy(str[coun], (const char *)str_new_start, len_new + 1);
+		coun++;
 	}
 	str[coun] = NULL;
 	return (str);
