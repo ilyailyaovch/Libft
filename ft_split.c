@@ -28,6 +28,8 @@ static unsigned int	ft_nb_wd(char const *s, char c)
 	unsigned int	coun;
 	unsigned int	nb;
 
+	if (s[0] == '\0')
+		return (0);
 	coun = 0;
 	nb = 0;
 	while (s[coun] && s[coun] == c)
@@ -37,7 +39,7 @@ static unsigned int	ft_nb_wd(char const *s, char c)
 		if (s[coun] == c)
 		{
 			nb++;
-			while (s[coun] == c)
+			while (s[coun] && s[coun] == c)
 				coun++;
 			continue ;
 		}
@@ -74,23 +76,23 @@ char	**ft_split(char const *s, char c)
 	unsigned int	len_new;
 	char			*str_new_start;
 
+	if (!s)
+		return (NULL);
 	coun = 0;
 	str_new_start = (char *)s;
 	len_new = 0;
-	if (*s == '\0')
-		return (NULL);
 	nb_wd = ft_nb_wd(s, c);
 	str = (char **)malloc(sizeof(char *) * (nb_wd + 1));
 	if (!str)
 		return (NULL);
-	while (coun < nb_wd)
+	while (coun++ < nb_wd)
 	{
 		ft_str_small(&str_new_start, &len_new, c);
 		str[coun] = (char *)malloc(sizeof(char) * (len_new + 1));
 		if (!str[coun])
 			return (ft_free_elem(str));
 		ft_strlcpy(str[coun], (const char *)str_new_start, len_new + 1);
-		coun++;
 	}
+	str[coun] = NULL;
 	return (str);
 }
