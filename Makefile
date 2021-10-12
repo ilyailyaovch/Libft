@@ -15,7 +15,7 @@ NAME = libft.a
 CC = gcc
 FLAGS = -Wall -Wextra -Werror
 
-SRC =   ft_isaplha.c		ft_toupper.c		ft_substr.c\
+SRC =   ft_isalpha.c		ft_toupper.c		ft_substr.c\
 		ft_isdigit.c		ft_tolower.c		ft_strjoin.c\
 		ft_isalnum.c		ft_strchr.c			ft_strtrim.c\
 		ft_isascii.c		ft_strrchr.c		ft_split.c\
