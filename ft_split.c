@@ -68,40 +68,6 @@ static void	ft_str_small(char **s, unsigned int *len, char c)
 	}
 }
 
-// static char	**ft_cycle(char **str,unsigned int countWords, char *str_new_start, char c)
-// {
-// 	unsigned int	coun;
-// 	unsigned int	len_new;
-
-// 	coun = 0;
-// 	len_new = 0;
-// 	while (coun < countWords)
-// 	{
-// 		ft_str_small(&str_new_start, &len_new, c);
-// 		str[coun] = (char *)malloc(sizeof(char) * (len_new + 1));
-// 		if (!str[coun])
-// 			return (ft_free_elem(str));
-// 		ft_strlcpy(str[coun], (const char *)str_new_start, len_new + 1);
-// 		coun++;
-// 	}
-// 	str[coun] = NULL;
-// 	return (str);
-// }
-
-// char	**ft_split(char const *s, char c)
-// {
-// 	char			**str;
-// 	char			*str_new_start;
-
-// 	if (!s)
-// 		return (NULL);
-// 	str_new_start = (char *)s;
-// 	str = (char **)malloc(sizeof(char *) * (ft_nb_wd(s, c) + 1));
-// 	if (!str)
-// 		return (NULL);
-// 	return (ft_cycle(str, ft_nb_wd(s, c), str_new_start, c));
-// }
-
 char	**ft_split(char const *s, char c)
 {
 	char			**str;

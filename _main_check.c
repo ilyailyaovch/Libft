@@ -243,6 +243,69 @@ char	*ft_itoa(int n)
 	return (str);
 }
 
+void	*ft_memcpy(void *dest, const void *src, size_t n)
+{
+	size_t	coun;
+
+	coun = 0;
+	if ((dest == NULL) && (src == NULL))
+		return (NULL);
+	while (coun < n)
+	{
+		((unsigned char *)dest)[coun] = ((unsigned char *)src)[coun];
+		coun++;
+	}
+	return (dest);
+}
+
+
+char	*ft_strdup(const char *str)
+{
+	int		len;
+	char	*dst;
+
+	len = ft_strlen((char *)str);
+	dst = (char *)malloc(sizeof(char) * (len + 1));
+	if (!dst)
+		return (NULL);
+	dst = ft_memcpy(dst, str, len + 1);
+	return (dst);
+}
+
+char	*ft_substr(char const *s, unsigned int start, size_t len)
+{
+	unsigned int	coun;
+	char			*dst;
+	unsigned int	len_s;
+	unsigned int	len_s_need;
+	
+	len_s = (unsigned int)ft_strlen((char *)s);
+	len_s_need = (unsigned int)ft_strlen((char *)s + start);
+	coun = 0;
+	if (s == NULL)
+		return (NULL);
+	if (len_s < start)
+		return (ft_strdup(""));
+	if (len_s_need < len)
+		len = len_s_need;
+	dst = (char *)malloc(sizeof(char) * (len + 1));
+	if (!dst)
+		return (NULL);
+	ft_strlcpy(dst, s + start, len + 1);
+	return (dst);
+}
+
+static char	**ft_free_elem(char **str)
+{
+	unsigned int	i;
+
+	i = 0;
+	while (str[i])
+		free (str[i++]);
+	free (str);
+	return (NULL);
+}
+
 static unsigned int	ft_nb_wd(char const *s, char c)
 {
 	unsigned int	coun;
@@ -293,23 +356,69 @@ char	**ft_split(char const *s, char c)
 	unsigned int	coun;
 	unsigned int	len_new;
 	char			*str_new_start;
-
+	
+	printf("1 \n");
+	if (!s || *s == '\0' || c == '\0')
+		return (NULL);
 	coun = 0;
 	str_new_start = (char *)s;
 	len_new = 0;
-	if (!s)
-		return (NULL);
 	nb_wd = ft_nb_wd(s, c);
+	printf("nb wd; %d \n",nb_wd);
 	str = (char **)malloc(sizeof(char *) * (nb_wd + 1));
 	if (!str)
 		return (NULL);
 	while (coun < nb_wd)
-	{	
+	{
 		ft_str_small(&str_new_start, &len_new, c);
 		str[coun] = (char *)malloc(sizeof(char) * (len_new + 1));
+		if (!str[coun])
+			return (ft_free_elem(str));
 		ft_strlcpy(str[coun], (const char *)str_new_start, len_new + 1);
 		coun++;
 	}
+	str[coun] = NULL;
+	return (str);
+}
+
+static int	ft_is_char_in_set(char char_in_str, char *set)
+{
+	unsigned int	coun;
+
+	coun = 0;
+	while (set[coun])
+	{
+		if (set[coun] == char_in_str)
+			return (1);
+		coun++;
+	}
+	return (0);
+}
+
+char	*ft_strtrim(char const *s1, char const *set)
+{
+	char			*str;
+	unsigned int	coun;
+	unsigned int	start;
+	unsigned int	end;
+
+	if (!s1)
+		return (NULL);
+	if (set == 0)
+		return (ft_strdup(s1));
+	start = 0;
+	coun = 0;
+	end = ft_strlen((char *)s1) - 1;
+	while ((s1[start]) && (ft_is_char_in_set(s1[start], (char *)set) == 1))
+		start++;
+	while ((end > start) && (ft_is_char_in_set(s1[end], (char *)set) == 1))
+		end--;
+	str = (char *)malloc(sizeof(char) * (end - start + 1 + 1));
+	if (!str)
+		return (NULL);
+	while (start <= end)
+		str[coun++] = s1[start++];
+	str[coun] = '\0';
 	return (str);
 }
 
@@ -330,7 +439,7 @@ int main(void)
 	printf("ft_isalnum: %d\n", rez);
 	rez = ft_isascii(test);
 	printf("ft_isascii: %d\n", rez);
-	rez = ft_isprint(test);
+	rez = ft_isprint(test);	
 	printf("ft_isprint: %d\n", rez);
 	rez = ft_strlen((char *)test_str);
 	printf("ft_strlen: %d\n", rez);
@@ -338,12 +447,18 @@ int main(void)
 	int itoa = -1;
 	printf("ft_itoa: %s\n", ft_itoa(itoa));
 	printf("--------------------------------\n");
-	char *split = ",AB,,C,D,EF,,";
-	char sep = ',';
+	char *split = "\0aa\0bbb";
+	char sep = '\0';
 	char **ans_spl;
+	printf("string %s\n",split);
 	printf("ft_nb_wd: %d\n", ft_nb_wd((char const *)split, sep));
 	ans_spl = ft_split((char const *)split, sep);
-	printf("ft_split: %s\n", ans_spl[3]);
+	printf("ft_split: %s\n", ans_spl[0]);
+	//printf("ft_split: %s\n", (ft_split((char const *)" as\0sd ", '\0'))[1]);
+	printf("--------------------------------\n");
+	
+	printf("--------------------------------\n");
+	
 
 
 	//char test_str_r[] = "helloworld";
