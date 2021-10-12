@@ -6,13 +6,13 @@
 /*   By: pleoma <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 11:38:41 by pleoma            #+#    #+#             */
-/*   Updated: 2021/10/12 11:43:48 by pleoma           ###   ########.fr       */
+/*   Updated: 2021/10/12 16:38:21 by pleoma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void ft_lstdelone(t_list *lst, void (*del)(void*))
+void	ft_lstdelone(t_list *lst, void (*del)(void*))
 {
 	if (!lst)
 		return ;

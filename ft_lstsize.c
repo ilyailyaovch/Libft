@@ -6,18 +6,18 @@
 /*   By: pleoma <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 10:46:34 by pleoma            #+#    #+#             */
-/*   Updated: 2021/10/12 10:53:34 by pleoma           ###   ########.fr       */
+/*   Updated: 2021/10/12 16:38:35 by pleoma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int ft_lstsize(t_list *lst)
+int	ft_lstsize(t_list *lst)
 {
 	int	coun;
 
 	coun = 0;
-	while(lst)
+	while (lst)
 	{
 		lst = lst -> next;
 		coun++;
